@@ -13,19 +13,28 @@ struct TreeNode {
 };
 
 // 正确的实现方法
-int depthCorrect(TreeNode *root, const int &target) {
+int depthCorrect(TreeNode *root, int target) {
     if (!root) return -1;  // 空节点，返回 -1
     if (root->val == target) return 0;  // 找到目标节点，返回 0
 
     // 递归查找左右子树
-    int subtree_depth = (target < root->val) 
-                        ? depth(root->left, target) 
-                        : depth(root->right, target);
-
+    int depth = (target < root->val) 
+                        ? depthCorrect(root->left, target) 
+                        : depthCorrect(root->right, target);
+    
     // 如果子树中未找到目标节点，返回 -1
-    return (subtree_depth == -1) ? -1 : 1 + subtree_depth;
+    return (depth == -1) ? -1 : 1 + depth;
 }
 
+// 深度作为参数
+int getDepth(TreeNode* root, int target, int depth) {
+    if (!root) return -1; // 如果节点为空，返回 -1，表示未找到
+    if (root->val == target) return depth; // 找到目标节点，返回当前深度
+    if (target < root->val) {
+        return getDepth(root->left, target, depth + 1); // 递归查找左子树，深度加 1
+    }
+    return getDepth(root->right, target, depth + 1); // 递归查找右子树，深度加 1
+}
 
 // W24 final 考试答案，实际上有问题
 int depth(TreeNode *root,const int &target){
