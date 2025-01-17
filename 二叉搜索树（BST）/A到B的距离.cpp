@@ -1,3 +1,9 @@
+/**
+ * 此文件是就 A 到 B 的距离
+ * 1. 先找公共祖先
+ * 2. 做出某个点的深度
+ * 3. 公共祖先到 2 个点的距离，相加，就是 A 到 B 的距离
+ */
 struct TreeNode {
     int val;
     TreeNode *left;
