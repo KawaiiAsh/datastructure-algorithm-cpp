@@ -22,11 +22,11 @@ vector<int> preorderTraversal(TreeNode *root) {
     result.push_back(root->val); // 访问根节点
 
     // 遍历左子树
-    auto left = preorderTraversal(root->left);
+    vector<int> left = preorderTraversal(root->left);
     result.insert(result.end(), left.begin(), left.end());
 
     // 遍历右子树
-    auto right = preorderTraversal(root->right);
+    vector<int> right = preorderTraversal(root->right);
     result.insert(result.end(), right.begin(), right.end());
 
     return result;
@@ -38,14 +38,14 @@ vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
 
     // 遍历左子树
-    auto left = inorderTraversal(root->left);
+    vector<int> left = inorderTraversal(root->left);
     result.insert(result.end(), left.begin(), left.end());
 
     // 访问根节点
     result.push_back(root->val);
 
     // 遍历右子树
-    auto right = inorderTraversal(root->right);
+    vector<int> right = inorderTraversal(root->right);
     result.insert(result.end(), right.begin(), right.end());
 
     return result;
@@ -57,11 +57,11 @@ vector<int> postorderTraversal(TreeNode *root) {
     vector<int> result;
 
     // 遍历左子树
-    auto left = postorderTraversal(root->left);
+    vector<int> left = postorderTraversal(root->left);
     result.insert(result.end(), left.begin(), left.end());
 
     // 遍历右子树
-    auto right = postorderTraversal(root->right);
+    vector<int> right = postorderTraversal(root->right);
     result.insert(result.end(), right.begin(), right.end());
 
     // 访问根节点
